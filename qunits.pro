@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    QUnits \
-    tests
+    src/QUnits \
+    src/tests
