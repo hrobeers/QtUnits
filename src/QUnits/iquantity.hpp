@@ -20,16 +20,23 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#ifndef QUNITS_IQUANTITY_H
+#define QUNITS_IQUANTITY_H
 
-#include "qunits_global.hpp"
+#include <QtGlobal>
 
-class QUNITSSHARED_EXPORT QUnits
-{
+namespace qunits {
 
-public:
-    QUnits();
-};
+    class IQuantity
+    {
+    public:
+        virtual qreal value() const = 0;
+        virtual void setValue(qreal value) = 0;
+        virtual QString unitSymbol() const = 0;
 
-#endif // QUNITS_H
+        virtual ~IQuantity() {}
+    };
+
+} // namespace qunits
+
+#endif // QUNITS_IQUANTITY_H

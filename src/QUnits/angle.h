@@ -20,16 +20,26 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#ifndef QUNITS_ANGLE_H
+#define QUNITS_ANGLE_H
 
-#include "qunits_global.hpp"
+#include "quantitybase.hpp"
+#include "boost/units/systems/angle/degrees.hpp"
 
-class QUNITSSHARED_EXPORT QUnits
-{
+namespace qunits {
 
-public:
-    QUnits();
-};
+    enum class AngleUnit { degree };
 
-#endif // QUNITS_H
+    class Angle : public QuantityBase<AngleUnit, boost::units::degree::plane_angle>
+    {
+    public:
+        explicit Angle();
+        explicit Angle(boost::units::quantity<boost::units::degree::plane_angle, qreal> internalValue,
+                       AngleUnit displayUnit);
+
+        virtual ~Angle() {}
+    };
+
+} // namespace qunits
+
+#endif // QUNITS_ANGLE_H

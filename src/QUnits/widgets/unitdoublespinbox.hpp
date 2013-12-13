@@ -20,16 +20,47 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#ifndef QUNITS_UNITDOUBLESPINBOX_H
+#define QUNITS_UNITDOUBLESPINBOX_H
 
-#include "qunits_global.hpp"
+#include "unitwidget.h"
 
-class QUNITSSHARED_EXPORT QUnits
-{
+#include <QDoubleSpinBox>
 
-public:
-    QUnits();
-};
+namespace qunits {
 
-#endif // QUNITS_H
+    template<class UnitType>
+    class UnitDoubleSpinbox : public UnitWidget<UnitType>
+    {
+    private:
+        QDoubleSpinBox *_spinBox;
+
+    public:
+        explicit UnitDoubleSpinbox(QWidget *parent = 0) :
+            UnitWidget<UnitType>(parent)
+        {
+            _spinBox = new QDoubleSpinBox();
+
+            UnitWidgetBase::connectValueChanged(_spinBox);
+        }
+
+        virtual void setReadOnly(bool readOnly)
+        {
+            _spinBox->setReadOnly(readOnly);
+        }
+
+    protected:
+        virtual QWidget *valueWidget()
+        {
+            return _spinBox;
+        }
+
+        virtual void onValueChange(UnitType &newValue)
+        {
+            _spinBox->setValue(newValue.value());
+        }
+    };
+
+} // namespace qunits
+
+#endif // QUNITS_UNITDOUBLESPINBOX_H

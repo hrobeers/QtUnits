@@ -20,16 +20,34 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#ifndef QUNITS_SYSTEMS_H
+#define QUNITS_SYSTEMS_H
 
-#include "qunits_global.hpp"
+#include "boost/units/make_system.hpp"
+#include "boost/units/base_units/imperial/foot.hpp"
+#include "boost/units/base_units/imperial/inch.hpp"
+#include "boost/units/physical_dimensions/area.hpp"
 
-class QUNITSSHARED_EXPORT QUnits
-{
+namespace qunits {
 
-public:
-    QUnits();
-};
+    namespace ft {
+        typedef boost::units::make_system<
+            boost::units::imperial::foot_base_unit
+            >::type ft_system;
 
-#endif // QUNITS_H
+        typedef boost::units::unit<boost::units::length_dimension, ft_system> length;
+        typedef boost::units::unit<boost::units::area_dimension, ft_system> area;
+    }
+    namespace inch {
+        typedef boost::units::make_system<
+            boost::units::imperial::inch_base_unit
+            >::type in_system;
+
+    typedef boost::units::unit<boost::units::length_dimension, in_system> length;
+    typedef boost::units::unit<boost::units::area_dimension, in_system> area;
+    }
+
+
+} // namespace qunits
+
+#endif // QUNITS_SYSTEMS_H

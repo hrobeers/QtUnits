@@ -20,16 +20,44 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#ifndef QUNITS_UNITLINEEDIT_H
+#define QUNITS_UNITLINEEDIT_H
 
-#include "qunits_global.hpp"
+#include <QLineEdit>
+#include "unitwidget.h"
 
-class QUNITSSHARED_EXPORT QUnits
-{
+namespace qunits {
 
-public:
-    QUnits();
-};
+    template<class UnitType>
+    class UnitLineEdit : public UnitWidget<UnitType>
+    {
+    private:
+        QLineEdit *_lineEdit;
 
-#endif // QUNITS_H
+    public:
+        explicit UnitLineEdit(QWidget *parent = 0) :
+            UnitWidget<UnitType>(parent)
+        {
+            _lineEdit = new QLineEdit();
+        }
+
+        virtual void setReadOnly(bool readOnly)
+        {
+            _lineEdit->setReadOnly(readOnly);
+        }
+
+    protected:
+        virtual QWidget *valueWidget()
+        {
+            return _lineEdit;
+        }
+
+        virtual void onValueChange(UnitType &newValue)
+        {
+            _lineEdit->setText(QString::number(newValue.value()));
+        }
+    };
+
+} // namespace qunits
+
+#endif // QUNITS_UNITLINEEDIT_H

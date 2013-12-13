@@ -20,16 +20,35 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#include "area.h"
 
-#include "qunits_global.hpp"
+#include "boost/units/base_units/cgs/centimeter.hpp"
+#include "boost/units/systems/cgs/area.hpp"
+#include "boost/units/systems/cgs/length.hpp"
+#include "boost/units/systems/si/length.hpp"
+#include "boost/mpl/string.hpp"
+#include "systems.hpp"
 
-class QUNITSSHARED_EXPORT QUnits
+using namespace qunits;
+using namespace boost::units;
+using namespace boost::mpl;
+
+static const UnitConvertor<si::area, si::area, string<'m<s','up>2','</su','p>'> > CONVERTOR_M2;
+static const UnitConvertor<cgs::area, si::area, string<'cm<s','up>2','</su','p>'> > CONVERTOR_CM2;
+static const UnitConvertor<ft::area, si::area, string<'ft<s','up>2','</su','p>'> > CONVERTOR_FT2;
+static const UnitConvertor<inch::area, si::area, string<'in<s','up>2','</su','p>'> > CONVERTOR_IN2;
+
+static const Area::insertConvertor m2(AreaUnit::m2, &CONVERTOR_M2);
+static const Area::insertConvertor cm2(AreaUnit::cm2, &CONVERTOR_CM2);
+static const Area::insertConvertor ft2(AreaUnit::ft2, &CONVERTOR_FT2);
+static const Area::insertConvertor inch2(AreaUnit::inch2, &CONVERTOR_IN2);
+
+Area::Area() :
+    QuantityBase(quantity<si::area>(0 * si::meter * si::meter), AreaUnit::cm2)
 {
+}
 
-public:
-    QUnits();
-};
-
-#endif // QUNITS_H
+Area::Area(boost::units::quantity<boost::units::si::area, qreal> internalValue, AreaUnit displayUnit) :
+    QuantityBase(internalValue, displayUnit)
+{
+}

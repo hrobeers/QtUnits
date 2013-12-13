@@ -13,10 +13,27 @@ VERSION = 0.1.0
 
 DEFINES += QUNITS_LIBRARY
 
-SOURCES += qunits.cpp
+QMAKE_CXXFLAGS +=   -std=c++11 \
+                    -Wno-multichar \
+                    -Wno-reorder
+
+SOURCES += qunits.cpp \
+    length.cpp \
+    area.cpp \
+    angle.cpp
 
 HEADERS += qunits.h\
-        qunits_global.h
+    length.h \
+    area.h \
+    widgets/unitdoublespinbox.hpp \
+    widgets/unitlineedit.hpp \
+    widgets/unitwidget.hpp \
+    angle.h \
+    iquantity.hpp \
+    quantitybase.hpp \
+    systems.hpp \
+    unitconvertor.hpp \
+    qunits_global.hpp
 
 unix:!symbian {
     maemo5 {

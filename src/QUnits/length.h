@@ -20,16 +20,26 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#ifndef QUNITS_LENGTH_H
+#define QUNITS_LENGTH_H
 
-#include "qunits_global.hpp"
+#include "quantitybase.hpp"
+#include "boost/units/systems/si/length.hpp"
 
-class QUNITSSHARED_EXPORT QUnits
-{
+namespace qunits {
 
-public:
-    QUnits();
-};
+    enum class LengthUnit { m, cm, ft, inch };
 
-#endif // QUNITS_H
+    class Length : public QuantityBase<LengthUnit, boost::units::si::length>
+    {
+    public:
+        explicit Length();
+        explicit Length(boost::units::quantity<boost::units::si::length, qreal> internalValue,
+                        LengthUnit displayUnit);
+
+        virtual ~Length() {}
+    };
+
+} // namespace qunits
+
+#endif // QUNITS_LENGTH_H
