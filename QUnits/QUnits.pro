@@ -26,3 +26,7 @@ unix:!symbian {
     }
     INSTALLS += target
 }
+
+OTHER_FILES += \
+    ../README.md \
+    ../LICENSE.BSD
