@@ -20,11 +20,16 @@
 
 ****************************************************************************/
 
-#include <QCoreApplication>
+#include <iostream>
+#include <boost/units/unit.hpp>
+#include <boost/units/io.hpp>
+#include <length.h>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    boost::units::quantity<boost::units::si::length, qreal> l(10 * boost::units::si::meter);
+    std::cout << l << std::endl;
 
-    return a.exec();
+    qt::units::Length ql(l, qt::units::LengthUnit::ft);
+    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
 }

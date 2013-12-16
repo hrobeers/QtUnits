@@ -23,6 +23,8 @@
 #ifndef QTUNITS_QUANTITYBASE_H
 #define QTUNITS_QUANTITYBASE_H
 
+#include "qtunits_global.hpp"
+
 #include "iquantity.hpp"
 #include "boost/units/quantity.hpp"
 #include "unitconvertor.hpp"
@@ -43,12 +45,12 @@ namespace qt { namespace units {
             return convertorMap;
         }
 
-    public:
         static const UnitConvertorBase<InternalUnit, NumericType>* convertor(UnitEnum unit)
         {
             return convertorMap().at(unit);
         }
 
+    public:
         explicit QuantityBase(boost::units::quantity<InternalUnit, NumericType> internalValue,
                               UnitEnum unit) :
             _internalValue(internalValue), _unit(unit)

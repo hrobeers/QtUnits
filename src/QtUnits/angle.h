@@ -30,7 +30,7 @@ namespace qt { namespace units {
 
     enum class AngleUnit { degree };
 
-    class Angle : public QuantityBase<AngleUnit, boost::units::degree::plane_angle>
+    class QTUNITSSHARED_EXPORT Angle : public QuantityBase<AngleUnit, boost::units::degree::plane_angle>
     {
     public:
         explicit Angle();

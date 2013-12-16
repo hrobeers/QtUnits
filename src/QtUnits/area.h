@@ -30,7 +30,7 @@ namespace qt { namespace units {
 
     enum class AreaUnit { m2, cm2, ft2, inch2 };
 
-    class Area : public QuantityBase<AreaUnit, boost::units::si::area>
+    class QTUNITSSHARED_EXPORT Area : public QuantityBase<AreaUnit, boost::units::si::area>
     {
     public:
         explicit Area();

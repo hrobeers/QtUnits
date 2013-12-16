@@ -23,11 +23,13 @@
 #ifndef QTUNITS_IQUANTITY_H
 #define QTUNITS_IQUANTITY_H
 
+#include "qtunits_global.hpp"
+
 #include <QtGlobal>
 
 namespace qt { namespace units {
 
-    class IQuantity
+    class QTUNITSSHARED_EXPORT IQuantity
     {
     public:
         virtual qreal value() const = 0;
