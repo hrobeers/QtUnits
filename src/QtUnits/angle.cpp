@@ -20,16 +20,24 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_H
-#define QUNITS_H
+#include "angle.h"
 
-#include "qunits_global.hpp"
+#include "boost/mpl/string.hpp"
 
-class QUNITSSHARED_EXPORT QUnits
+using namespace qt::units;
+using namespace boost::units;
+using namespace boost::units::degree;
+using namespace boost::mpl;
+
+static const UnitConvertor<plane_angle, plane_angle, string<'deg'> > CONVERTOR_DEG;
+static const Angle::insertConvertor deg(AngleUnit::degree, &CONVERTOR_DEG);
+
+Angle::Angle() :
+    QuantityBase(quantity<plane_angle, qreal>(0 * degrees), AngleUnit::degree)
 {
+}
 
-public:
-    QUnits();
-};
-
-#endif // QUNITS_H
+Angle::Angle(boost::units::quantity<degree::plane_angle, qreal> internalValue, AngleUnit displayUnit) :
+    QuantityBase(internalValue, displayUnit)
+{
+}

@@ -20,35 +20,44 @@
 
 ****************************************************************************/
 
-#include "area.h"
+#ifndef QTUNITS_UNITLINEEDIT_H
+#define QTUNITS_UNITLINEEDIT_H
 
-#include "boost/units/base_units/cgs/centimeter.hpp"
-#include "boost/units/systems/cgs/area.hpp"
-#include "boost/units/systems/cgs/length.hpp"
-#include "boost/units/systems/si/length.hpp"
-#include "boost/mpl/string.hpp"
-#include "systems.hpp"
+#include <QLineEdit>
+#include "unitwidget.h"
 
-using namespace qunits;
-using namespace boost::units;
-using namespace boost::mpl;
+namespace qt { namespace units {
 
-static const UnitConvertor<si::area, si::area, string<'m<s','up>2','</su','p>'> > CONVERTOR_M2;
-static const UnitConvertor<cgs::area, si::area, string<'cm<s','up>2','</su','p>'> > CONVERTOR_CM2;
-static const UnitConvertor<ft::area, si::area, string<'ft<s','up>2','</su','p>'> > CONVERTOR_FT2;
-static const UnitConvertor<inch::area, si::area, string<'in<s','up>2','</su','p>'> > CONVERTOR_IN2;
+    template<class UnitType>
+    class UnitLineEdit : public UnitWidget<UnitType>
+    {
+    private:
+        QLineEdit *_lineEdit;
 
-static const Area::insertConvertor m2(AreaUnit::m2, &CONVERTOR_M2);
-static const Area::insertConvertor cm2(AreaUnit::cm2, &CONVERTOR_CM2);
-static const Area::insertConvertor ft2(AreaUnit::ft2, &CONVERTOR_FT2);
-static const Area::insertConvertor inch2(AreaUnit::inch2, &CONVERTOR_IN2);
+    public:
+        explicit UnitLineEdit(QWidget *parent = 0) :
+            UnitWidget<UnitType>(parent)
+        {
+            _lineEdit = new QLineEdit();
+        }
 
-Area::Area() :
-    QuantityBase(quantity<si::area>(0 * si::meter * si::meter), AreaUnit::cm2)
-{
-}
+        virtual void setReadOnly(bool readOnly)
+        {
+            _lineEdit->setReadOnly(readOnly);
+        }
 
-Area::Area(boost::units::quantity<boost::units::si::area, qreal> internalValue, AreaUnit displayUnit) :
-    QuantityBase(internalValue, displayUnit)
-{
-}
+    protected:
+        virtual QWidget *valueWidget()
+        {
+            return _lineEdit;
+        }
+
+        virtual void onValueChange(UnitType &newValue)
+        {
+            _lineEdit->setText(QString::number(newValue.value()));
+        }
+    };
+
+}} // namespace qt::units
+
+#endif // QTUNITS_UNITLINEEDIT_H

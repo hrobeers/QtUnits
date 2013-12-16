@@ -20,23 +20,51 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_IQUANTITY_H
-#define QUNITS_IQUANTITY_H
+#ifndef QTUNITS_UNITTYPE_H
+#define QTUNITS_UNITTYPE_H
 
-#include <QtGlobal>
+#include <QString>
+#include "boost/units/quantity.hpp"
+#include "boost/mpl/string.hpp"
 
-namespace qunits {
+namespace qt { namespace units {
 
-    class IQuantity
+    template<class InternalUnit, typename NumericType = qreal>
+    class UnitConvertorBase
     {
     public:
-        virtual qreal value() const = 0;
-        virtual void setValue(qreal value) = 0;
+        virtual NumericType fromInternalValue(boost::units::quantity<InternalUnit, NumericType> internalValue) const = 0;
+        virtual boost::units::quantity<InternalUnit, NumericType> toInternalValue(NumericType value) const = 0;
         virtual QString unitSymbol() const = 0;
 
-        virtual ~IQuantity() {}
+        virtual ~UnitConvertorBase() {}
     };
 
-} // namespace qunits
+    template<class Unit, class InternalUnit,
+             typename UnitSymbol, typename NumericType = qreal>
+    class UnitConvertor : public UnitConvertorBase<InternalUnit>
+    {
+    public:
+        virtual NumericType fromInternalValue(boost::units::quantity<InternalUnit, NumericType> internalValue) const
+        {
+            boost::units::quantity<Unit, NumericType> converted(internalValue);
+            return converted.value();
+        }
 
-#endif // QUNITS_IQUANTITY_H
+        virtual boost::units::quantity<InternalUnit, NumericType> toInternalValue(NumericType value) const
+        {
+            boost::units::quantity<InternalUnit, NumericType> internalValue(value * Unit());
+            return internalValue;
+        }
+
+        virtual QString unitSymbol() const
+        {
+            return QString(boost::mpl::c_str<UnitSymbol>::value);
+        }
+
+        virtual ~UnitConvertor() {}
+    };
+
+}} // namespace qt::units
+
+#endif // QTUNITS_UNITTYPE_H

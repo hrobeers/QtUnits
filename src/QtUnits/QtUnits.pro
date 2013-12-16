@@ -6,23 +6,23 @@
 
 QT       += widgets
 
-TARGET = QUnits
+TARGET = QtUnits
 TEMPLATE = lib
 
 VERSION = 0.1.0
 
-DEFINES += QUNITS_LIBRARY
+DEFINES += QTUNITS_LIBRARY
 
 QMAKE_CXXFLAGS +=   -std=c++11 \
                     -Wno-multichar \
                     -Wno-reorder
 
-SOURCES += qunits.cpp \
+SOURCES += qtunits.cpp \
     length.cpp \
     area.cpp \
     angle.cpp
 
-HEADERS += qunits.h\
+HEADERS += qtunits.h\
     length.h \
     area.h \
     widgets/unitdoublespinbox.hpp \
@@ -33,7 +33,7 @@ HEADERS += qunits.h\
     quantitybase.hpp \
     systems.hpp \
     unitconvertor.hpp \
-    qunits_global.hpp
+    qtunits_global.hpp
 
 unix:!symbian {
     maemo5 {

@@ -20,26 +20,15 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_AREA_H
-#define QUNITS_AREA_H
+#ifndef QTUNITS_GLOBAL_H
+#define QTUNITS_GLOBAL_H
 
-#include "quantitybase.hpp"
-#include "boost/units/systems/si/area.hpp"
+#include <QtCore/qglobal.h>
 
-namespace qunits {
+#if defined(QTUNITS_LIBRARY)
+#  define QTUNITSSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define QTUNITSSHARED_EXPORT Q_DECL_IMPORT
+#endif
 
-    enum class AreaUnit { m2, cm2, ft2, inch2 };
-
-    class Area : public QuantityBase<AreaUnit, boost::units::si::area>
-    {
-    public:
-        explicit Area();
-        explicit Area(boost::units::quantity<boost::units::si::area, qreal> internalValue,
-             AreaUnit displayUnit);
-
-        virtual ~Area() {}
-    };
-
-} // namespace qunits
-
-#endif // QUNITS_AREA_H
+#endif // QTUNITS_GLOBAL_H

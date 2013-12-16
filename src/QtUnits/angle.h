@@ -20,13 +20,13 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_ANGLE_H
-#define QUNITS_ANGLE_H
+#ifndef QTUNITS_ANGLE_H
+#define QTUNITS_ANGLE_H
 
 #include "quantitybase.hpp"
 #include "boost/units/systems/angle/degrees.hpp"
 
-namespace qunits {
+namespace qt { namespace units {
 
     enum class AngleUnit { degree };
 
@@ -40,6 +40,6 @@ namespace qunits {
         virtual ~Angle() {}
     };
 
-} // namespace qunits
+}} // namespace qt::units
 
-#endif // QUNITS_ANGLE_H
+#endif // QTUNITS_ANGLE_H

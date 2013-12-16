@@ -20,47 +20,34 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_UNITDOUBLESPINBOX_H
-#define QUNITS_UNITDOUBLESPINBOX_H
+#ifndef QTUNITS_SYSTEMS_H
+#define QTUNITS_SYSTEMS_H
 
-#include "unitwidget.h"
+#include "boost/units/make_system.hpp"
+#include "boost/units/base_units/imperial/foot.hpp"
+#include "boost/units/base_units/imperial/inch.hpp"
+#include "boost/units/physical_dimensions/area.hpp"
 
-#include <QDoubleSpinBox>
+namespace qt { namespace units {
 
-namespace qunits {
+    namespace ft {
+        typedef boost::units::make_system<
+            boost::units::imperial::foot_base_unit
+            >::type ft_system;
 
-    template<class UnitType>
-    class UnitDoubleSpinbox : public UnitWidget<UnitType>
-    {
-    private:
-        QDoubleSpinBox *_spinBox;
+        typedef boost::units::unit<boost::units::length_dimension, ft_system> length;
+        typedef boost::units::unit<boost::units::area_dimension, ft_system> area;
+    }
+    namespace inch {
+        typedef boost::units::make_system<
+            boost::units::imperial::inch_base_unit
+            >::type in_system;
 
-    public:
-        explicit UnitDoubleSpinbox(QWidget *parent = 0) :
-            UnitWidget<UnitType>(parent)
-        {
-            _spinBox = new QDoubleSpinBox();
+    typedef boost::units::unit<boost::units::length_dimension, in_system> length;
+    typedef boost::units::unit<boost::units::area_dimension, in_system> area;
+    }
 
-            UnitWidgetBase::connectValueChanged(_spinBox);
-        }
 
-        virtual void setReadOnly(bool readOnly)
-        {
-            _spinBox->setReadOnly(readOnly);
-        }
+}} // namespace qt::units
 
-    protected:
-        virtual QWidget *valueWidget()
-        {
-            return _spinBox;
-        }
-
-        virtual void onValueChange(UnitType &newValue)
-        {
-            _spinBox->setValue(newValue.value());
-        }
-    };
-
-} // namespace qunits
-
-#endif // QUNITS_UNITDOUBLESPINBOX_H
+#endif // QTUNITS_SYSTEMS_H

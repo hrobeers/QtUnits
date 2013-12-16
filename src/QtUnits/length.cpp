@@ -20,24 +20,31 @@
 
 ****************************************************************************/
 
-#include "angle.h"
-
+#include "length.h"
+#include "boost/units/systems/cgs/length.hpp"
 #include "boost/mpl/string.hpp"
+#include "systems.hpp"
 
-using namespace qunits;
+using namespace qt::units;
 using namespace boost::units;
-using namespace boost::units::degree;
 using namespace boost::mpl;
 
-static const UnitConvertor<plane_angle, plane_angle, string<'deg'> > CONVERTOR_DEG;
-static const Angle::insertConvertor deg(AngleUnit::degree, &CONVERTOR_DEG);
+static const UnitConvertor<si::length, si::length, string<'m'> > CONVERTOR_M;
+static const UnitConvertor<cgs::length, si::length, string<'cm'> > CONVERTOR_CM;
+static const UnitConvertor<ft::length, si::length, string<'ft'> > CONVERTOR_FT;
+static const UnitConvertor<inch::length, si::length, string<'in'> > CONVERTOR_IN;
 
-Angle::Angle() :
-    QuantityBase(quantity<plane_angle, qreal>(0 * degrees), AngleUnit::degree)
+static const Length::insertConvertor m(LengthUnit::m, &CONVERTOR_M);
+static const Length::insertConvertor cm(LengthUnit::cm, &CONVERTOR_CM);
+static const Length::insertConvertor ft(LengthUnit::ft, &CONVERTOR_FT);
+static const Length::insertConvertor inch(LengthUnit::inch, &CONVERTOR_IN);
+
+Length::Length() :
+    QuantityBase(quantity<si::length, qreal>(0 * si::meter), LengthUnit::cm)
 {
 }
 
-Angle::Angle(boost::units::quantity<degree::plane_angle, qreal> internalValue, AngleUnit displayUnit) :
+Length::Length(boost::units::quantity<si::length, qreal> internalValue, LengthUnit displayUnit) :
     QuantityBase(internalValue, displayUnit)
 {
 }

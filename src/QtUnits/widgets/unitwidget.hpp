@@ -20,8 +20,8 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_UNITWIDGETBASE_H
-#define QUNITS_UNITWIDGETBASE_H
+#ifndef QTUNITS_UNITWIDGETBASE_H
+#define QTUNITS_UNITWIDGETBASE_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -29,7 +29,7 @@
 #include <QDoubleSpinBox>
 #include "../iquantity.hpp"
 
-namespace qunits {
+namespace qt { namespace units {
 
     class UnitWidgetBase : public QWidget
     {
@@ -111,6 +111,6 @@ namespace qunits {
         virtual void setReadOnly(bool readOnly) = 0;
     };
 
-} // namespace qunits
+}} // namespace qt::units
 
-#endif // QUNITS_UNITWIDGETBASE_H
+#endif // QTUNITS_UNITWIDGETBASE_H

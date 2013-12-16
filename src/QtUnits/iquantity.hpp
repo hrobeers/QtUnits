@@ -20,44 +20,23 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_UNITLINEEDIT_H
-#define QUNITS_UNITLINEEDIT_H
+#ifndef QTUNITS_IQUANTITY_H
+#define QTUNITS_IQUANTITY_H
 
-#include <QLineEdit>
-#include "unitwidget.h"
+#include <QtGlobal>
 
-namespace qunits {
+namespace qt { namespace units {
 
-    template<class UnitType>
-    class UnitLineEdit : public UnitWidget<UnitType>
+    class IQuantity
     {
-    private:
-        QLineEdit *_lineEdit;
-
     public:
-        explicit UnitLineEdit(QWidget *parent = 0) :
-            UnitWidget<UnitType>(parent)
-        {
-            _lineEdit = new QLineEdit();
-        }
+        virtual qreal value() const = 0;
+        virtual void setValue(qreal value) = 0;
+        virtual QString unitSymbol() const = 0;
 
-        virtual void setReadOnly(bool readOnly)
-        {
-            _lineEdit->setReadOnly(readOnly);
-        }
-
-    protected:
-        virtual QWidget *valueWidget()
-        {
-            return _lineEdit;
-        }
-
-        virtual void onValueChange(UnitType &newValue)
-        {
-            _lineEdit->setText(QString::number(newValue.value()));
-        }
+        virtual ~IQuantity() {}
     };
 
-} // namespace qunits
+}} // namespace qt::units
 
-#endif // QUNITS_UNITLINEEDIT_H
+#endif // QTUNITS_IQUANTITY_H

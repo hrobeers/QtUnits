@@ -20,15 +20,9 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_GLOBAL_H
-#define QUNITS_GLOBAL_H
+#include "qtunits.h"
 
-#include <QtCore/qglobal.h>
 
-#if defined(QUNITS_LIBRARY)
-#  define QUNITSSHARED_EXPORT Q_DECL_EXPORT
-#else
-#  define QUNITSSHARED_EXPORT Q_DECL_IMPORT
-#endif
-
-#endif // QUNITS_GLOBAL_H
+QUnits::QUnits()
+{
+}

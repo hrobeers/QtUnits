@@ -20,15 +20,15 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_QUANTITYBASE_H
-#define QUNITS_QUANTITYBASE_H
+#ifndef QTUNITS_QUANTITYBASE_H
+#define QTUNITS_QUANTITYBASE_H
 
 #include "iquantity.hpp"
 #include "boost/units/quantity.hpp"
 #include "unitconvertor.hpp"
 #include <map>
 
-namespace qunits {
+namespace qt { namespace units {
 
     template<typename UnitEnum, class InternalUnit, typename NumericType = qreal>
     class QuantityBase : public IQuantity
@@ -92,6 +92,6 @@ namespace qunits {
         };
     };
 
-} // namespace qunits
+}} // namespace qt::units
 
-#endif // QUNITS_QUANTITYBASE_H
+#endif // QTUNITS_QUANTITYBASE_H

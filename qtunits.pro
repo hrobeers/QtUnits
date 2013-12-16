@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    src/QUnits \
+    src/QtUnits \
     src/tests

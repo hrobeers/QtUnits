@@ -20,31 +20,26 @@
 
 ****************************************************************************/
 
-#include "length.h"
-#include "boost/units/systems/cgs/length.hpp"
-#include "boost/mpl/string.hpp"
-#include "systems.hpp"
+#ifndef QTUNITS_AREA_H
+#define QTUNITS_AREA_H
 
-using namespace qunits;
-using namespace boost::units;
-using namespace boost::mpl;
+#include "quantitybase.hpp"
+#include "boost/units/systems/si/area.hpp"
 
-static const UnitConvertor<si::length, si::length, string<'m'> > CONVERTOR_M;
-static const UnitConvertor<cgs::length, si::length, string<'cm'> > CONVERTOR_CM;
-static const UnitConvertor<ft::length, si::length, string<'ft'> > CONVERTOR_FT;
-static const UnitConvertor<inch::length, si::length, string<'in'> > CONVERTOR_IN;
+namespace qt { namespace units {
 
-static const Length::insertConvertor m(LengthUnit::m, &CONVERTOR_M);
-static const Length::insertConvertor cm(LengthUnit::cm, &CONVERTOR_CM);
-static const Length::insertConvertor ft(LengthUnit::ft, &CONVERTOR_FT);
-static const Length::insertConvertor inch(LengthUnit::inch, &CONVERTOR_IN);
+    enum class AreaUnit { m2, cm2, ft2, inch2 };
 
-Length::Length() :
-    QuantityBase(quantity<si::length, qreal>(0 * si::meter), LengthUnit::cm)
-{
-}
+    class Area : public QuantityBase<AreaUnit, boost::units::si::area>
+    {
+    public:
+        explicit Area();
+        explicit Area(boost::units::quantity<boost::units::si::area, qreal> internalValue,
+             AreaUnit displayUnit);
 
-Length::Length(boost::units::quantity<si::length, qreal> internalValue, LengthUnit displayUnit) :
-    QuantityBase(internalValue, displayUnit)
-{
-}
+        virtual ~Area() {}
+    };
+
+}} // namespace qt::units
+
+#endif // QTUNITS_AREA_H

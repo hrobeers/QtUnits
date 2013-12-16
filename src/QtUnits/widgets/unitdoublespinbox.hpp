@@ -20,34 +20,47 @@
 
 ****************************************************************************/
 
-#ifndef QUNITS_SYSTEMS_H
-#define QUNITS_SYSTEMS_H
+#ifndef QTUNITS_UNITDOUBLESPINBOX_H
+#define QTUNITS_UNITDOUBLESPINBOX_H
 
-#include "boost/units/make_system.hpp"
-#include "boost/units/base_units/imperial/foot.hpp"
-#include "boost/units/base_units/imperial/inch.hpp"
-#include "boost/units/physical_dimensions/area.hpp"
+#include "unitwidget.h"
 
-namespace qunits {
+#include <QDoubleSpinBox>
 
-    namespace ft {
-        typedef boost::units::make_system<
-            boost::units::imperial::foot_base_unit
-            >::type ft_system;
+namespace qt { namespace units {
 
-        typedef boost::units::unit<boost::units::length_dimension, ft_system> length;
-        typedef boost::units::unit<boost::units::area_dimension, ft_system> area;
-    }
-    namespace inch {
-        typedef boost::units::make_system<
-            boost::units::imperial::inch_base_unit
-            >::type in_system;
+    template<class UnitType>
+    class UnitDoubleSpinbox : public UnitWidget<UnitType>
+    {
+    private:
+        QDoubleSpinBox *_spinBox;
 
-    typedef boost::units::unit<boost::units::length_dimension, in_system> length;
-    typedef boost::units::unit<boost::units::area_dimension, in_system> area;
-    }
+    public:
+        explicit UnitDoubleSpinbox(QWidget *parent = 0) :
+            UnitWidget<UnitType>(parent)
+        {
+            _spinBox = new QDoubleSpinBox();
 
+            UnitWidgetBase::connectValueChanged(_spinBox);
+        }
 
-} // namespace qunits
+        virtual void setReadOnly(bool readOnly)
+        {
+            _spinBox->setReadOnly(readOnly);
+        }
 
-#endif // QUNITS_SYSTEMS_H
+    protected:
+        virtual QWidget *valueWidget()
+        {
+            return _spinBox;
+        }
+
+        virtual void onValueChange(UnitType &newValue)
+        {
+            _spinBox->setValue(newValue.value());
+        }
+    };
+
+}} // namespace qt::units
+
+#endif // QTUNITS_UNITDOUBLESPINBOX_H
