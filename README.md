@@ -1,5 +1,5 @@
-QUnits
-======
+Qt::Units
+=========
 
 Qt runtime unit conversion library built using (and compatible with) Boost::Units.
 
