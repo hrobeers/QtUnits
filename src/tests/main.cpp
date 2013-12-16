@@ -25,11 +25,20 @@
 #include <boost/units/io.hpp>
 #include <length.h>
 
+using namespace boost::units;
+using namespace qt::units;
+
 int main(int argc, char *argv[])
 {
-    boost::units::quantity<boost::units::si::length, qreal> l(10 * boost::units::si::meter);
+    quantity<si::length, qreal> l(10 * si::meter);
     std::cout << l << std::endl;
 
-    qt::units::Length ql(l, qt::units::LengthUnit::ft);
+    Length ql(l, LengthUnit::cm);
+    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
+
+    ql.setUnit(LengthUnit::ft);
+    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
+
+    ql.setUnit(LengthUnit::inch);
     std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
 }
