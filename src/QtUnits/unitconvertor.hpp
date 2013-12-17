@@ -36,8 +36,6 @@ namespace qt { namespace units {
         virtual NumericType fromInternalValue(boost::units::quantity<InternalUnit, NumericType> internalValue) const = 0;
         virtual boost::units::quantity<InternalUnit, NumericType> toInternalValue(NumericType value) const = 0;
         virtual QString unitSymbol() const = 0;
-
-        virtual ~UnitConvertorBase() {}
     };
 
     template<class Unit, class InternalUnit,
@@ -61,8 +59,6 @@ namespace qt { namespace units {
         {
             return QString(boost::mpl::c_str<UnitSymbol>::value);
         }
-
-        virtual ~UnitConvertor() {}
     };
 
 }} // namespace qt::units
