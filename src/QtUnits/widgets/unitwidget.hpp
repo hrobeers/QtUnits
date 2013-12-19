@@ -55,7 +55,8 @@ namespace qt { namespace units {
     class UnitWidget : public UnitWidgetBase
     {
     private:
-        bool _initialized;
+        bool _initialized = false;
+        bool _skipReadValue = false;
         QLabel* _unitLabel;
 
     protected:
@@ -66,7 +67,11 @@ namespace qt { namespace units {
 
         virtual void onEditImplementation(double displayValue)
         {
-            _value.setValue(displayValue);
+            if (_skipReadValue)
+                _skipReadValue = false;
+            else
+                _value.setValue(displayValue);
+
             emitValueChanged(&_value);
         }
 
@@ -92,7 +97,6 @@ namespace qt { namespace units {
         explicit UnitWidget(QWidget *parent = 0) :
             UnitWidgetBase(parent)
         {
-            _initialized = false;
             _unitLabel = new QLabel();
         }
 
@@ -103,6 +107,10 @@ namespace qt { namespace units {
 
         void setValue(UnitType &newValue)
         {
+            // Skip to read the value from the valueWidget.
+            // This prevents signaling the rounded value (see onEditImplementation()).
+            _skipReadValue = true;
+
             _value = newValue;
             _unitLabel->setText(_value.unitSymbol());
             onValueChange(_value);
