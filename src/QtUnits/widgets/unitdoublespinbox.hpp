@@ -23,7 +23,7 @@
 #ifndef QTUNITS_UNITDOUBLESPINBOX_H
 #define QTUNITS_UNITDOUBLESPINBOX_H
 
-#include "unitwidget.h"
+#include "widgets/unitwidget.hpp"
 
 #include <QDoubleSpinBox>
 

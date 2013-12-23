@@ -23,13 +23,12 @@
 #ifndef QTUNITS_H
 #define QTUNITS_H
 
-#include "qtunits_global.hpp"
+#include "length.h"
+#include "area.h"
+#include "angle.h"
 
-class QTUNITSSHARED_EXPORT QUnits
-{
-
-public:
-    QUnits();
-};
+#include "widgets/unitwidget.hpp"
+#include "widgets/unitlineedit.hpp"
+#include "widgets/unitdoublespinbox.hpp"
 
 #endif // QTUNITS_H

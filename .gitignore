@@ -7,6 +7,7 @@
 *.la
 *.lai
 *.so
+*.so.*
 *.dll
 *.dylib
 
@@ -18,3 +19,7 @@ moc_*.cpp
 qrc_*.cpp
 Makefile
 *-build-*
+
+# QtUnits specific
+
+src/tests/tests

@@ -17,12 +17,12 @@ QMAKE_CXXFLAGS +=   -std=c++11 \
                     -Wno-multichar \
                     -Wno-reorder
 
-SOURCES += qtunits.cpp \
+SOURCES += \
     length.cpp \
     area.cpp \
     angle.cpp
 
-HEADERS += qtunits.h\
+HEADERS +=\
     length.h \
     area.h \
     widgets/unitdoublespinbox.hpp \
@@ -33,7 +33,8 @@ HEADERS += qtunits.h\
     quantitybase.hpp \
     systems.hpp \
     unitconvertor.hpp \
-    qtunits_global.hpp
+    qtunits_global.hpp \
+    QtUnits
 
 unix:!symbian {
     maemo5 {

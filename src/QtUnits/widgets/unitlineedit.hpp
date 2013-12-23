@@ -24,7 +24,7 @@
 #define QTUNITS_UNITLINEEDIT_H
 
 #include <QLineEdit>
-#include "unitwidget.h"
+#include "widgets/unitwidget.hpp"
 
 namespace qt { namespace units {
 

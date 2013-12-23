@@ -27,7 +27,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QDoubleSpinBox>
-#include "../iquantity.hpp"
+#include "iquantity.hpp"
 
 namespace qt { namespace units {
 
@@ -38,7 +38,7 @@ namespace qt { namespace units {
         explicit UnitWidgetBase(QWidget *parent = 0) : QWidget(parent) {}
 
     signals:
-        void valueChanged(IQuantity *value);
+        void valueChanged(qt::units::IQuantity *value);
 
     protected:
         virtual void onEditImplementation(double displayValue) = 0;
