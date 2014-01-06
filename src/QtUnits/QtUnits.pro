@@ -13,6 +13,9 @@ VERSION = 0.1.0
 
 DEFINES += QTUNITS_LIBRARY
 
+# Place shared libs in QtUnits/bin/
+DESTDIR = $${_PRO_FILE_PWD_}../../../bin
+
 QMAKE_CXXFLAGS +=   -std=c++11 \
                     -Wno-multichar \
                     -Wno-reorder
