@@ -20,19 +20,17 @@
 
 ****************************************************************************/
 
-#ifndef UNITCONVERTORTEST_H
-#define UNITCONVERTORTEST_H
+#ifndef QUANTITYTEST_H
+#define QUANTITYTEST_H
 
 #include <QObject>
 
-class UnitConvertorTest : public QObject
+class QuantityTests : public QObject
 {
     Q_OBJECT
 
 private slots:
-    void testLengthConvertor();
-
-    // TODO test for different NumericTypes
+    void testLength();
 };
 
-#endif // UNITCONVERTORTEST_H
+#endif // QUANTITYTEST_H

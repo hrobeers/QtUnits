@@ -1,6 +1,6 @@
 /****************************************************************************
 
- Copyright (c) 2013, Hans Robeers
+ Copyright (c) 2014, Hans Robeers
  All rights reserved.
 
  BSD 2-Clause License
@@ -20,13 +20,39 @@
 
 ****************************************************************************/
 
-#include <QCoreApplication>
+#include "quantitytests.h"
 
 #include "submodules/qtestrunner/qtestrunner.hpp"
+#include <QtUnits>
 
-int main(int argc, char *argv[])
+#include "boost/units/systems/si/length.hpp"
+#include "boost/units/systems/cgs/length.hpp"
+
+using namespace qt::units;
+using namespace boost::units;
+using namespace boost::mpl;
+
+void QuantityTests::testLength()
 {
-    QCoreApplication app(argc, argv);
+    quantity<si::length, qreal> l(10 * si::meter);
+    QCOMPARE(l.value(), 10.0);
 
-    return QTestRunner::runTests(app);
+    Length ql(l, LengthUnit::cm);
+    QCOMPARE(ql.internalValue().value(), 10.0);
+    QCOMPARE(ql.value(), 1000.0);
+    QCOMPARE(ql.unitSymbol(), QString("cm"));
+
+    ql.setUnit(LengthUnit::m);
+    QCOMPARE(ql.value(), 10.0);
+    QCOMPARE(ql.unitSymbol(), QString("m"));
+
+    ql.setUnit(LengthUnit::ft);
+    QCOMPARE(ql.value(), 10/0.3048);
+    QCOMPARE(ql.unitSymbol(), QString("ft"));
+
+    ql.setUnit(LengthUnit::inch);
+    QCOMPARE(ql.value(), 10/0.0254);
+    QCOMPARE(ql.unitSymbol(), QString("in"));
 }
+
+QTR_ADD_TEST(QuantityTests)

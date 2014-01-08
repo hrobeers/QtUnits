@@ -20,32 +20,19 @@
 
 ****************************************************************************/
 
-#include "unitconvertortest.h"
+#ifndef UNITCONVERTORTEST_H
+#define UNITCONVERTORTEST_H
 
-#include "submodules/qtestrunner/qtestrunner.hpp"
-#include <QtUnits>
+#include <QObject>
 
-#include "boost/units/systems/si/length.hpp"
-#include "boost/units/systems/cgs/length.hpp"
-#include "boost/mpl/string.hpp"
-
-using namespace qt::units;
-using namespace boost::units;
-using namespace boost::mpl;
-
-void UnitConvertorTest::testLengthConvertor()
+class UnitConvertorTests : public QObject
 {
-    // If this compiles, compilation works :)
-    UnitConvertor<cgs::length, si::length, string<'cm'> > cmConvertor;
+    Q_OBJECT
 
-    quantity<si::length, qreal> internalValue(1 * si::meter);
-    qreal cm = cmConvertor.fromInternalValue(internalValue);
-    QCOMPARE(cm, 100.0);
+private slots:
+    void testLengthConvertor();
 
-    internalValue = cmConvertor.toInternalValue(1);
-    QCOMPARE(internalValue.value(), 0.01);
+    // TODO test for different NumericTypes
+};
 
-    QCOMPARE(cmConvertor.unitSymbol(), QString("cm"));
-}
-
-QTR_ADD_TEST(UnitConvertorTest)
+#endif // UNITCONVERTORTEST_H

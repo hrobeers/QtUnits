@@ -15,7 +15,8 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    unitconvertortest.cpp
+    quantitytests.cpp \
+    unitconvertortests.cpp
 
 unix|win32: LIBS += -L$$PWD/../../bin/ -lQtUnits
 
@@ -24,4 +25,5 @@ INCLUDEPATH +=  $$PWD/../QtUnits \
 DEPENDPATH += $$PWD/../QtUnits
 
 HEADERS += \
-    unitconvertortest.h
+    quantitytests.h \
+    unitconvertortests.h
