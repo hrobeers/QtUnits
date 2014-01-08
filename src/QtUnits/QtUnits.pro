@@ -6,22 +6,14 @@
 
 QT       += widgets
 
+include(../../common.pri)
+
 TARGET = QtUnits
 TEMPLATE = lib
 
 VERSION = 0.1.0
 
 DEFINES += QTUNITS_LIBRARY
-
-# Place shared libs in QtUnits/bin/
-DESTDIR = $${_PRO_FILE_PWD_}../../../bin
-
-# C++11 compiler flags depending on Qt version
-greaterThan(QT_MAJOR_VERSION, 4): CONFIG += c++11
-equals(QT_MAJOR_VERSION, 4): QMAKE_CXXFLAGS += -std=c++0x
-
-QMAKE_CXXFLAGS +=   -Wno-multichar \
-                    -Wno-reorder
 
 SOURCES += \
     length.cpp \
