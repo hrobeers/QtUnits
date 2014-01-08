@@ -1,6 +1,6 @@
 /****************************************************************************
 
- Copyright (c) 2013, Hans Robeers
+ Copyright (c) 2014, Hans Robeers
  All rights reserved.
 
  BSD 2-Clause License
@@ -20,25 +20,32 @@
 
 ****************************************************************************/
 
-//    quantity<si::length, qreal> l(10 * si::meter);
-//    std::cout << l << std::endl;
-
-//    Length ql(l, LengthUnit::cm);
-//    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
-
-//    ql.setUnit(LengthUnit::ft);
-//    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
-
-//    ql.setUnit(LengthUnit::inch);
-//    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
-
-#include <QCoreApplication>
+#include "unitconvertortest.h"
 
 #include "submodules/qtestrunner/qtestrunner.hpp"
+#include <QtUnits>
 
-int main(int argc, char *argv[])
+#include "boost/units/systems/si/length.hpp"
+#include "boost/units/systems/cgs/length.hpp"
+#include "boost/mpl/string.hpp"
+
+using namespace qt::units;
+using namespace boost::units;
+using namespace boost::mpl;
+
+void UnitConvertorTest::testLengthConvertor()
 {
-    QCoreApplication app(argc, argv);
+    // If this compiles, compilation works :)
+    UnitConvertor<cgs::length, si::length, string<'cm'> > cmConvertor;
 
-    return QTestRunner::runTests(app);
+    quantity<si::length, qreal> internalValue(1 * si::meter);
+    qreal cm = cmConvertor.fromInternalValue(internalValue);
+    QCOMPARE(cm, 100.0);
+
+    internalValue = cmConvertor.toInternalValue(1);
+    QCOMPARE(internalValue.value(), 0.01);
+
+    QCOMPARE(cmConvertor.unitSymbol(), QString("cm"));
 }
+
+QTR_ADD_TEST(UnitConvertorTest)

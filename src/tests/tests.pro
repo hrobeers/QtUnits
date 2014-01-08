@@ -4,8 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core
-QT       -= gui
+QT       += testlib
 
 include(../../common.pri)
 
@@ -15,9 +14,14 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    unitconvertortest.cpp
 
 unix|win32: LIBS += -L$$PWD/../../bin/ -lQtUnits
 
-INCLUDEPATH += $$PWD/../QtUnits
+INCLUDEPATH +=  $$PWD/../QtUnits \
+                ../../
 DEPENDPATH += $$PWD/../QtUnits
+
+HEADERS += \
+    unitconvertortest.h

@@ -1,6 +1,6 @@
 /****************************************************************************
 
- Copyright (c) 2013, Hans Robeers
+ Copyright (c) 2014, Hans Robeers
  All rights reserved.
 
  BSD 2-Clause License
@@ -20,25 +20,19 @@
 
 ****************************************************************************/
 
-//    quantity<si::length, qreal> l(10 * si::meter);
-//    std::cout << l << std::endl;
+#ifndef UNITCONVERTORTEST_H
+#define UNITCONVERTORTEST_H
 
-//    Length ql(l, LengthUnit::cm);
-//    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
+#include <QObject>
 
-//    ql.setUnit(LengthUnit::ft);
-//    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
-
-//    ql.setUnit(LengthUnit::inch);
-//    std::cout << ql.value() << " " << ql.unitSymbol().toStdString() << std::endl;
-
-#include <QCoreApplication>
-
-#include "submodules/qtestrunner/qtestrunner.hpp"
-
-int main(int argc, char *argv[])
+class UnitConvertorTest : public QObject
 {
-    QCoreApplication app(argc, argv);
+    Q_OBJECT
 
-    return QTestRunner::runTests(app);
-}
+private slots:
+    void testLengthConvertor();
+
+    // TODO test for different NumericTypes
+};
+
+#endif // UNITCONVERTORTEST_H

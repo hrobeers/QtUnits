@@ -4,8 +4,6 @@
 #
 #-------------------------------------------------
 
-QT       += widgets
-
 include(../../common.pri)
 
 TARGET = QtUnits
