@@ -43,6 +43,8 @@ namespace qt { namespace units {
     class UnitConvertor : public UnitConvertorBase<InternalUnit>
     {
     public:
+        UnitConvertor() {}
+
         virtual NumericType fromInternalValue(boost::units::quantity<InternalUnit, NumericType> internalValue) const
         {
             boost::units::quantity<Unit, NumericType> converted(internalValue);
