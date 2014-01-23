@@ -4,8 +4,8 @@ TEMPLATE = subdirs
 CONFIG += ordered
 
 SUBDIRS += \
-    src/QtUnits \
-    src/tests
+    src \
+    tests
 
 # Specify dependencies
-tests.depends = QtUnits
+tests.depends = src

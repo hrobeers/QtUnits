@@ -15,4 +15,4 @@ QMAKE_CXXFLAGS +=   -Wno-multichar \
                     -Wno-reorder
 
 # Place shared binaries in bin/ folder
-DESTDIR = $${_PRO_FILE_PWD_}/../../bin
+DESTDIR = $${_PRO_FILE_PWD_}/../bin

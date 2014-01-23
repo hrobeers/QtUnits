@@ -6,7 +6,7 @@
 
 QT       += testlib
 
-include(../../common.pri)
+include(../common.pri)
 
 TARGET = tests
 CONFIG   += console
@@ -18,11 +18,10 @@ SOURCES += main.cpp \
     quantitytests.cpp \
     unitconvertortests.cpp
 
-unix|win32: LIBS += -L$$PWD/../../bin/ -lQtUnits
+LIBS += -L$$PWD/../bin/ -lQtUnits
 
-INCLUDEPATH +=  $$PWD/../QtUnits \
-                ../../
-DEPENDPATH += $$PWD/../QtUnits
+INCLUDEPATH +=  $$PWD/../src \
+                ../
 
 HEADERS += \
     quantitytests.h \

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include(../../common.pri)
+include(../common.pri)
 
 TARGET = QtUnits
 TEMPLATE = lib
