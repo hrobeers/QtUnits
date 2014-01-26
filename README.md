@@ -29,20 +29,26 @@ Specific unit widgets, located in the widgets/ folder, can be used to display th
 Assume that you want to convert a value of 10m to cm.
 In your code you will have the following boost quantity:
 
-quantity<si::length, qreal> l(10 * si::meter);
+'''C++
+ quantity<si::length, qreal> l(10 * si::meter);
+'''
 
 Create a qt::units::Length object with a display unit cm.
 This display unit can be changed at runtime using the setUnit(UnitEnum) method.
 
-Length length(l, LengthUnit::cm);
+'''C++
+ Length length(l, LengthUnit::cm);
+'''
 
 The following methods on the length object should explain themselves.
 
-length.internalValue().value()      returns: 10.0
+'''C++
+ length.internalValue().value();     // returns: 10.0
 
-length.value()                      returns: 1000.0
+ length.value();                     // returns: 1000.0
 
-length.unitSymbol()                 returns: QString("cm")
+ length.unitSymbol();                // returns: QString("cm")
+'''
 
 It is also important to note that the internalValue cannot be requested on the IQuantity interface.
 This due to the fact that IQuantity does not know which boost quantity type to return.
