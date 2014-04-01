@@ -1,6 +1,6 @@
 #
 # This file contains common .pro file configuration
-# (for QtUnits.pro and tests.pro)
+# (for src.pro and tests.pro)
 #
 
 # Qt5 needs widgets explicitly configured
