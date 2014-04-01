@@ -43,6 +43,4 @@ unix:!symbian {
 
 OTHER_FILES += \
     ../README.md \
-    ../LICENSE.BSD \
-    ../../README.md \
-    ../../LICENSE.BSD
+    ../LICENSE.BSD
