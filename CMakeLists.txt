@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 
 project(qtunits)
-set(BINARY_NAME "qtunits")
+set(QTUNITS_BINARY_NAME "qtunits")
 
 # Define the Build options
 option(DebugBuild "Build debug binaries." OFF)

@@ -28,8 +28,12 @@ set(HDR
 # The executable
 #
 
+if(NOT QTUNITS_BINARY_NAME)
+    set(QTUNITS_BINARY_NAME "qtunits")
+endif()
+
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-add_library(${BINARY_NAME} ${SRC} ${HDR} ${MOC_SRC})
+add_library(${QTUNITS_BINARY_NAME} ${SRC} ${HDR} ${MOC_SRC})
 
 
 #
@@ -37,4 +41,4 @@ add_library(${BINARY_NAME} ${SRC} ${HDR} ${MOC_SRC})
 #
 
 #Qt modules
-target_link_libraries(qtunits Qt5::Core Qt5::Widgets)
+target_link_libraries(${QTUNITS_BINARY_NAME} Qt5::Core Qt5::Widgets)
