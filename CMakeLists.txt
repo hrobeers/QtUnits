@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 2.8.11)
 
 project(qtunits)
 set(QTUNITS_BINARY_NAME "qtunits")
+set(TESTS_BINARY_NAME "qtunits-tests")
 
 
 #
@@ -16,6 +17,7 @@ set(QTUNITS_BINARY_NAME "qtunits")
 # Define the Build flags
 option(DebugBuild "Build debug binaries." OFF)
 option(CCache "Build using ccache." OFF)
+option(Tests "Build the tests executable" OFF)
 
 # Set the CMAKE_BUILD_TYPE (Only DEBUG and RELEASE are supported)
 if(DebugBuild)
@@ -59,7 +61,12 @@ endif()
 # Include subdirectories
 #
 
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/src")
 
 # Include the subdirectories
 add_subdirectory(src)
+if(Tests)
+    find_package(Qt5Test REQUIRED)
+    add_subdirectory(tests)
+endif()
