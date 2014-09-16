@@ -8,9 +8,11 @@ This library is originally developed for the finFoil project (https://github.com
 
 ## Dependencies
 
+CMake >= 2.8.11
+
 C++11 compliant compiler
 
-Qt >= 4.8
+Qt >= 5.3
 
 Boost >= 1.54
 

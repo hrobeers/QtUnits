@@ -25,7 +25,7 @@
 
 #include <QtCore/qglobal.h>
 
-#if defined(QTUNITS_LIBRARY)
+#ifdef qtunits_EXPORTS
 #  define QTUNITSSHARED_EXPORT Q_DECL_EXPORT
 #else
 #  define QTUNITSSHARED_EXPORT Q_DECL_IMPORT

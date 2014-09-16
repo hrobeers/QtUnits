@@ -14,9 +14,15 @@ set(TESTS_BINARY_NAME "qtunits-tests")
 #
 
 # Define the Build flags
+option(Shared "Build QtUnits as a shared libarary." ON)
 option(DebugBuild "Build debug binaries." OFF)
 option(CCache "Build using ccache." OFF)
 option(Tests "Build the tests executable" OFF)
+
+# Set the shared define
+if(Shared)
+    set(QTUNITS_SHARED ON)
+endif()
 
 # Set the CMAKE_BUILD_TYPE (Only DEBUG and RELEASE are supported)
 if(DebugBuild)

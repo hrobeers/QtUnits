@@ -28,8 +28,16 @@ set(HDR
 # The executable
 #
 
+if(QTUNITS_SHARED)
+    set(QTUNITS_LIBRARY_TYPE SHARED)
+    message(STATUS "QTUNITS_LIBRARY_TYPE = SHARED")
+else()
+    set(QTUNITS_LIBRARY_TYPE STATIC)
+    message(STATUS "QTUNITS_LIBRARY_TYPE = STATIC")
+endif()
+
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
-add_library(qtunits ${SRC} ${HDR} ${MOC_SRC})
+add_library(qtunits ${QTUNITS_LIBRARY_TYPE} ${SRC} ${HDR} ${MOC_SRC})
 
 
 #
