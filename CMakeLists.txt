@@ -19,9 +19,11 @@ option(DebugBuild "Build debug binaries." OFF)
 option(CCache "Build using ccache." OFF)
 option(Tests "Build the tests executable" OFF)
 
-# Set the shared define
+# Configure linking type
 if(Shared)
     set(QTUNITS_SHARED ON)
+else()
+    add_definitions(-DQTUNITS_STATIC)
 endif()
 
 # Set the CMAKE_BUILD_TYPE (Only DEBUG and RELEASE are supported)

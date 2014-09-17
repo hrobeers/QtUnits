@@ -31,7 +31,7 @@
 
 namespace qt { namespace units {
 
-    class UnitWidgetBase : public QWidget
+    class QTUNITSSHARED_EXPORT UnitWidgetBase : public QWidget
     {
         Q_OBJECT
     public:

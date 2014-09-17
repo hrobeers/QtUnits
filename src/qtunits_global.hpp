@@ -25,10 +25,14 @@
 
 #include <QtCore/qglobal.h>
 
-#ifdef qtunits_EXPORTS
-#  define QTUNITSSHARED_EXPORT Q_DECL_EXPORT
+#ifdef QTUNITS_STATIC
+    #define QTUNITSSHARED_EXPORT
 #else
-#  define QTUNITSSHARED_EXPORT Q_DECL_IMPORT
+    #ifdef qtunits_EXPORTS
+        #define QTUNITSSHARED_EXPORT Q_DECL_EXPORT
+    #else
+        #define QTUNITSSHARED_EXPORT Q_DECL_IMPORT
+    #endif
 #endif
 
 #endif // QTUNITS_GLOBAL_H
