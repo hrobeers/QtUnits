@@ -36,7 +36,6 @@ else()
     message(STATUS "QTUNITS_LIBRARY_TYPE = STATIC")
 endif()
 
-set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 add_library(qtunits ${QTUNITS_LIBRARY_TYPE} ${SRC} ${HDR} ${MOC_SRC})
 
 

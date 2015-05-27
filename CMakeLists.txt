@@ -19,7 +19,8 @@ option(DebugBuild "Build debug binaries." OFF)
 option(CCache "Build using ccache." OFF)
 option(Tests "Build the tests executable" OFF)
 
-# Configure linking type
+# Configure library options
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 if(Shared)
     set(QTUNITS_SHARED ON)
 else()
