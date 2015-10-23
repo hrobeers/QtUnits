@@ -105,11 +105,11 @@ namespace qt { namespace units {
             return &_value;
         }
 
-        void setValue(UnitType &newValue)
+        void setValue(UnitType &newValue, bool skipSignal = false)
         {
             // Skip to read the value from the valueWidget.
             // This prevents signaling the rounded value (see onEditImplementation()).
-            _skipReadValue = true;
+            _skipReadValue = skipSignal;
 
             _value = newValue;
             _unitLabel->setText(_value.unitSymbol());
