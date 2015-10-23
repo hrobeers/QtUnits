@@ -22,22 +22,28 @@
 
 #include "length.h"
 #include "boost/units/systems/cgs/length.hpp"
-#include "boost/mpl/string.hpp"
 #include "systems.hpp"
 
 using namespace qt::units;
 using namespace boost::units;
-using namespace boost::mpl;
 
-static const UnitConvertor<si::length, si::length, string<'m'> > CONVERTOR_M;
-static const UnitConvertor<cgs::length, si::length, string<'cm'> > CONVERTOR_CM;
-static const UnitConvertor<ft::length, si::length, string<'ft'> > CONVERTOR_FT;
-static const UnitConvertor<inch::length, si::length, string<'in'> > CONVERTOR_IN;
+namespace
+{
+    constexpr auto M_SYMBOL  = "m";
+    constexpr auto CM_SYMBOL = "cm";
+    constexpr auto FT_SYMBOL = "ft";
+    constexpr auto IN_SYMBOL = "in";
 
-static const Length::insertConvertor m(LengthUnit::m, &CONVERTOR_M);
-static const Length::insertConvertor cm(LengthUnit::cm, &CONVERTOR_CM);
-static const Length::insertConvertor ft(LengthUnit::ft, &CONVERTOR_FT);
-static const Length::insertConvertor inch(LengthUnit::inch, &CONVERTOR_IN);
+    constexpr UnitConvertor<si::length, si::length> CONVERTOR_M(M_SYMBOL);
+    constexpr UnitConvertor<cgs::length, si::length> CONVERTOR_CM(CM_SYMBOL);
+    constexpr UnitConvertor<ft::length, si::length> CONVERTOR_FT(FT_SYMBOL);
+    constexpr UnitConvertor<inch::length, si::length> CONVERTOR_IN(IN_SYMBOL);
+
+    const Length::insertConvertor m(LengthUnit::m, &CONVERTOR_M);
+    const Length::insertConvertor cm(LengthUnit::cm, &CONVERTOR_CM);
+    const Length::insertConvertor ft(LengthUnit::ft, &CONVERTOR_FT);
+    const Length::insertConvertor inch(LengthUnit::inch, &CONVERTOR_IN);
+}
 
 Length::Length() :
     QuantityBase(quantity<si::length, qreal>(0 * si::meter), LengthUnit::cm)

@@ -26,22 +26,28 @@
 #include "boost/units/systems/cgs/area.hpp"
 #include "boost/units/systems/cgs/length.hpp"
 #include "boost/units/systems/si/length.hpp"
-#include "boost/mpl/string.hpp"
 #include "systems.hpp"
 
 using namespace qt::units;
 using namespace boost::units;
-using namespace boost::mpl;
 
-static const UnitConvertor<si::area, si::area, string<'m<s','up>2','</su','p>'> > CONVERTOR_M2;
-static const UnitConvertor<cgs::area, si::area, string<'cm<s','up>2','</su','p>'> > CONVERTOR_CM2;
-static const UnitConvertor<ft::area, si::area, string<'ft<s','up>2','</su','p>'> > CONVERTOR_FT2;
-static const UnitConvertor<inch::area, si::area, string<'in<s','up>2','</su','p>'> > CONVERTOR_IN2;
+namespace
+{
+    constexpr auto M2_SYMBOL  = "m<sup>2</sup>";
+    constexpr auto CM2_SYMBOL = "cm<sup>2</sup>";
+    constexpr auto FT2_SYMBOL = "ft<sup>2</sup>";
+    constexpr auto IN2_SYMBOL = "in<sup>2</sup>";
 
-static const Area::insertConvertor m2(AreaUnit::m2, &CONVERTOR_M2);
-static const Area::insertConvertor cm2(AreaUnit::cm2, &CONVERTOR_CM2);
-static const Area::insertConvertor ft2(AreaUnit::ft2, &CONVERTOR_FT2);
-static const Area::insertConvertor inch2(AreaUnit::inch2, &CONVERTOR_IN2);
+    constexpr UnitConvertor<si::area, si::area> CONVERTOR_M2(M2_SYMBOL);
+    constexpr UnitConvertor<cgs::area, si::area> CONVERTOR_CM2(CM2_SYMBOL);
+    constexpr UnitConvertor<ft::area, si::area> CONVERTOR_FT2(FT2_SYMBOL);
+    constexpr UnitConvertor<inch::area, si::area> CONVERTOR_IN2(IN2_SYMBOL);
+
+    const Area::insertConvertor m2(AreaUnit::m2, &CONVERTOR_M2);
+    const Area::insertConvertor cm2(AreaUnit::cm2, &CONVERTOR_CM2);
+    const Area::insertConvertor ft2(AreaUnit::ft2, &CONVERTOR_FT2);
+    const Area::insertConvertor inch2(AreaUnit::inch2, &CONVERTOR_IN2);
+}
 
 Area::Area() :
     QuantityBase(quantity<si::area>(0 * si::meter * si::meter), AreaUnit::cm2)

@@ -25,7 +25,6 @@
 
 #include <QString>
 #include "boost/units/quantity.hpp"
-#include "boost/mpl/string.hpp"
 
 namespace qt { namespace units {
 
@@ -39,11 +38,12 @@ namespace qt { namespace units {
     };
 
     template<class Unit, class InternalUnit,
-             typename UnitSymbol, typename NumericType = qreal>
+             typename NumericType = qreal>
     class UnitConvertor : public UnitConvertorBase<InternalUnit>
     {
+        const char* const _unitSymbol;
     public:
-        UnitConvertor() {}
+        constexpr UnitConvertor(const char* const unitSymbol) : _unitSymbol(unitSymbol) {}
 
         virtual NumericType fromInternalValue(boost::units::quantity<InternalUnit, NumericType> internalValue) const
         {
@@ -59,7 +59,7 @@ namespace qt { namespace units {
 
         virtual QString unitSymbol() const
         {
-            return QString(boost::mpl::c_str<UnitSymbol>::value);
+            return QString(_unitSymbol);
         }
     };
 

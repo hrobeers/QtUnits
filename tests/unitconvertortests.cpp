@@ -30,12 +30,12 @@
 
 using namespace qt::units;
 using namespace boost::units;
-using namespace boost::mpl;
 
 void UnitConvertorTests::testLengthConvertor()
 {
+    constexpr auto cm_symbol = "cm";
     // If this compiles, compilation works :)
-    UnitConvertor<cgs::length, si::length, string<'cm'> > cmConvertor;
+    UnitConvertor<cgs::length, si::length> cmConvertor(cm_symbol);
 
     quantity<si::length, qreal> internalValue(1 * si::meter);
     qreal cm = cmConvertor.fromInternalValue(internalValue);

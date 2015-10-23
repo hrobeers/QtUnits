@@ -23,17 +23,21 @@
 #include "angle.h"
 
 #include "boost/units/systems/angle/degrees.hpp"
-#include "boost/mpl/string.hpp"
 
 using namespace qt::units;
 using namespace boost::units;
-using namespace boost::mpl;
 
-static const UnitConvertor<si::plane_angle, si::plane_angle, string<'rad'> > CONVERTOR_RAD;
-static const UnitConvertor<degree::plane_angle, si::plane_angle, string<'deg'> > CONVERTOR_DEG;
+namespace
+{
+    constexpr auto RAD_SYMBOL = "rad";
+    constexpr auto DEG_SYMBOL = "deg";
 
-static const Angle::insertConvertor rad(AngleUnit::radian, &CONVERTOR_RAD);
-static const Angle::insertConvertor deg(AngleUnit::degree, &CONVERTOR_DEG);
+    constexpr UnitConvertor<si::plane_angle, si::plane_angle> CONVERTOR_RAD(RAD_SYMBOL);
+    constexpr UnitConvertor<degree::plane_angle, si::plane_angle> CONVERTOR_DEG(DEG_SYMBOL);
+
+    const Angle::insertConvertor rad(AngleUnit::radian, &CONVERTOR_RAD);
+    const Angle::insertConvertor deg(AngleUnit::degree, &CONVERTOR_DEG);
+}
 
 Angle::Angle() :
     QuantityBase(quantity<si::plane_angle, qreal>(0 * si::radian), AngleUnit::radian)
