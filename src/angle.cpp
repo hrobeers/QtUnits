@@ -29,11 +29,11 @@ using namespace boost::units;
 
 namespace
 {
-    constexpr auto RAD_SYMBOL = "rad";
-    constexpr auto DEG_SYMBOL = "deg";
+    const auto RAD_SYMBOL = "rad";
+    const auto DEG_SYMBOL = "deg";
 
-    constexpr UnitConvertor<si::plane_angle, si::plane_angle> CONVERTOR_RAD(RAD_SYMBOL);
-    constexpr UnitConvertor<degree::plane_angle, si::plane_angle> CONVERTOR_DEG(DEG_SYMBOL);
+    const UnitConvertor<si::plane_angle, si::plane_angle> CONVERTOR_RAD(RAD_SYMBOL);
+    const UnitConvertor<degree::plane_angle, si::plane_angle> CONVERTOR_DEG(DEG_SYMBOL);
 
     const Angle::insertConvertor rad(AngleUnit::radian, &CONVERTOR_RAD);
     const Angle::insertConvertor deg(AngleUnit::degree, &CONVERTOR_DEG);

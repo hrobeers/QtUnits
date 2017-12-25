@@ -29,15 +29,15 @@ using namespace boost::units;
 
 namespace
 {
-    constexpr auto M_SYMBOL  = "m";
-    constexpr auto CM_SYMBOL = "cm";
-    constexpr auto FT_SYMBOL = "ft";
-    constexpr auto IN_SYMBOL = "in";
+    const auto M_SYMBOL  = "m";
+    const auto CM_SYMBOL = "cm";
+    const auto FT_SYMBOL = "ft";
+    const auto IN_SYMBOL = "in";
 
-    constexpr UnitConvertor<si::length, si::length> CONVERTOR_M(M_SYMBOL);
-    constexpr UnitConvertor<cgs::length, si::length> CONVERTOR_CM(CM_SYMBOL);
-    constexpr UnitConvertor<ft::length, si::length> CONVERTOR_FT(FT_SYMBOL);
-    constexpr UnitConvertor<inch::length, si::length> CONVERTOR_IN(IN_SYMBOL);
+    const UnitConvertor<si::length, si::length> CONVERTOR_M(M_SYMBOL);
+    const UnitConvertor<cgs::length, si::length> CONVERTOR_CM(CM_SYMBOL);
+    const UnitConvertor<ft::length, si::length> CONVERTOR_FT(FT_SYMBOL);
+    const UnitConvertor<inch::length, si::length> CONVERTOR_IN(IN_SYMBOL);
 
     const Length::insertConvertor m(LengthUnit::m, &CONVERTOR_M);
     const Length::insertConvertor cm(LengthUnit::cm, &CONVERTOR_CM);

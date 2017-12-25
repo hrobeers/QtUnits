@@ -33,15 +33,15 @@ using namespace boost::units;
 
 namespace
 {
-    constexpr auto M2_SYMBOL  = "m<sup>2</sup>";
-    constexpr auto CM2_SYMBOL = "cm<sup>2</sup>";
-    constexpr auto FT2_SYMBOL = "ft<sup>2</sup>";
-    constexpr auto IN2_SYMBOL = "in<sup>2</sup>";
+    const auto M2_SYMBOL  = "m<sup>2</sup>";
+    const auto CM2_SYMBOL = "cm<sup>2</sup>";
+    const auto FT2_SYMBOL = "ft<sup>2</sup>";
+    const auto IN2_SYMBOL = "in<sup>2</sup>";
 
-    constexpr UnitConvertor<si::area, si::area> CONVERTOR_M2(M2_SYMBOL);
-    constexpr UnitConvertor<cgs::area, si::area> CONVERTOR_CM2(CM2_SYMBOL);
-    constexpr UnitConvertor<ft::area, si::area> CONVERTOR_FT2(FT2_SYMBOL);
-    constexpr UnitConvertor<inch::area, si::area> CONVERTOR_IN2(IN2_SYMBOL);
+    const UnitConvertor<si::area, si::area> CONVERTOR_M2(M2_SYMBOL);
+    const UnitConvertor<cgs::area, si::area> CONVERTOR_CM2(CM2_SYMBOL);
+    const UnitConvertor<ft::area, si::area> CONVERTOR_FT2(FT2_SYMBOL);
+    const UnitConvertor<inch::area, si::area> CONVERTOR_IN2(IN2_SYMBOL);
 
     const Area::insertConvertor m2(AreaUnit::m2, &CONVERTOR_M2);
     const Area::insertConvertor cm2(AreaUnit::cm2, &CONVERTOR_CM2);
