@@ -36,8 +36,8 @@ namespace qt { namespace units {
     class QuantityBase : public IQuantity
     {
     private:
-        UnitEnum _unit;
         boost::units::quantity<InternalUnit, NumericType> _internalValue;
+        UnitEnum _unit;
 
         static std::map<UnitEnum, const UnitConvertorBase<InternalUnit, NumericType>*>& convertorMap()
         {
