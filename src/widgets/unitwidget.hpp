@@ -105,7 +105,7 @@ namespace qt { namespace units {
             return &_value;
         }
 
-        void setValue(UnitType &newValue, bool skipSignal = false)
+        void setValue(const UnitType &newValue, bool skipSignal = false)
         {
             // Skip to read the value from the valueWidget.
             // This prevents signaling the rounded value (see onEditImplementation()).
