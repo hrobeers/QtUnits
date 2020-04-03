@@ -28,6 +28,12 @@
 #include <QDoubleSpinBox>
 
 namespace qt { namespace units {
+    inline
+    int sc_exp(qreal r, int e=0) {
+      if (r<10)
+        return e;
+      return sc_exp(r/10, ++e);
+    }
 
     template<class UnitType>
     class UnitDoubleSpinbox : public UnitWidget<UnitType>
@@ -58,6 +64,7 @@ namespace qt { namespace units {
         virtual void onValueChange(UnitType &newValue)
         {
             _spinBox->setValue(newValue.value());
+            _spinBox->setDecimals(std::max(0, 4-sc_exp(newValue.value())));
         }
     };
 
